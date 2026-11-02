@@ -1,0 +1,51 @@
+{
+  "name": "@straylabs/sdk",
+  "version": "0.1.0",
+  "description": "Server-side TypeScript SDK for Straylabs blackbox and greybox projects, scans, findings, and reports",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist",
+    "examples/workflow.ts",
+    "openapi.json",
+    "openapi.metadata.json"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "generate": "bun scripts/generate.ts",
+    "generate:check": "bun scripts/generate.ts --check",
+    "prepublishOnly": "bun run generate:check && bun run typecheck && bun test && bun run build",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/straylabs-ai/stray-sdk-typescript.git"
+  },
+  "keywords": [
+    "straylabs",
+    "security",
+    "sdk",
+    "typescript"
+  ]
+}

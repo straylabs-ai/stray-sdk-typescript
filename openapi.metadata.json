@@ -1,0 +1,10 @@
+{
+  "source": "openapi.json",
+  "sourceRepositoryCommit": "d05cc9741d2c20d034bd540323e6461eae963e2f",
+  "verifiedAt": "2026-11-02",
+  "sha256": "b13c4a73d5adfa050e40563c4eef00391c1fa1bc6d859a12514aa8ff45170574",
+  "openapiVersion": "3.1.0",
+  "apiDocumentVersion": "0.1.0",
+  "pathCount": 85,
+  "schemaCount": 99
+}
