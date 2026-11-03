@@ -1,6 +1,6 @@
 {
   "name": "@straylabs/sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Server-side TypeScript SDK for Straylabs blackbox and greybox projects, scans, findings, and reports",
   "type": "module",
   "main": "./dist/index.js",
