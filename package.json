@@ -16,17 +16,20 @@
     "LICENSE",
     "README.md",
     "dist",
-    "examples/workflow.ts",
-    "openapi.json",
-    "openapi.metadata.json"
+    "examples/workflow.ts"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "generate": "bun scripts/generate.ts",
     "generate:check": "bun scripts/generate.ts --check",
-    "prepublishOnly": "bun run generate:check && bun run typecheck && bun test && bun run build",
+    "package:check": "bun scripts/check-package.ts",
+    "prepublishOnly": "bun run typecheck && bun test && bun run build && bun run package:check",
     "test": "bun test",
     "typecheck": "tsc --noEmit"
   },
