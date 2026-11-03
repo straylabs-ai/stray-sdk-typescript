@@ -1,6 +1,6 @@
 # @straylabs/sdk
 
-Server-side TypeScript SDK for Straylabs blackbox and greybox projects, scans, findings, and PDF/Markdown reports. Uses checked-in wire types generated from a private OpenAPI export, verified on 2026-11-02. The source specification is excluded from this public repository and the npm package. The package name is the specification's proposed name; this repository does not establish publication or registry availability.
+Server-side TypeScript SDK for Straylabs blackbox and greybox projects, scans, findings, and PDF/Markdown reports.
 
 Requires Node.js 22+ or Bun 1.3+. Uses native `fetch`, with no runtime dependencies. ESM JavaScript and TypeScript declarations are built into `dist/`. Keep API credentials on the server.
 
@@ -180,26 +180,6 @@ Also exported: `StraylabsInputError`, `StraylabsProtocolError`, `StraylabsTimeou
 - [SDK overview](https://github.com/straylabs-ai/deadend-docs/blob/main/deadend-docs/content/docs/SDK/index.mdx).
 
 Sub-account provisioning, outbound webhooks, dedicated finding retests, guaranteed report-to-scan attribution and automatic verified-remediation decisions are unavailable in this v1 contract.
-
-## Development
-
-```sh
-bun install --frozen-lockfile
-bun run typecheck
-bun test
-bun run build
-bun tests/runtime-smoke.mjs
-node tests/runtime-smoke.mjs
-bun run package:check
-```
-
-Tests use mocked HTTP fixtures and never launch real scans. Workflow tests exercise the reference adapter with test storage; validate actual database locking, Nhost evidence delivery and operational policy in the consuming integration. Runtime smoke checks exercise built ESM with native Node/Bun fetch. CI covers Node 22/24 and Bun.
-
-Building, testing and publishing use the checked-in generated files and do not require the private specification. `package:check` requires Node/npm and Git; it rejects tracked OpenAPI/Swagger documents and unexpected files in npm's package list, including a local ignored `openapi.json`.
-
-To refresh the contract privately, place a reviewed export at the ignored `openapi.json` path, update [openapi.metadata.json](./openapi.metadata.json), then run `bun run generate` and `bun run generate:check`. Review generated types, response validators, explicit report overrides, tests and docs together. Commit only the generated files and metadata; never force-add the source specification or upload it as an artifact. The generator emits all 99 component wire types, which remain public in the source and package; the package exports the types relevant to v1. Production builds never fetch an OpenAPI route. API document version `0.1.0` alone is not a compatibility guarantee.
-
-The publish workflow runs checks before publishing on a pushed `v*` tag, or manual dispatch against an existing `v*` tag. The tag must exactly match `package.json` (currently `v0.1.0`). Branch pushes and GitHub release events do not publish. Configure the repository's `NPM_TOKEN` secret with a granular npm token that has publish access to `@straylabs/sdk` and permission to bypass 2FA for automation. The npm account must have access to the `@straylabs` scope. Bump the package version for every release; existing npm versions cannot be overwritten. Changing code locally does not publish a package.
 
 ## License
 
